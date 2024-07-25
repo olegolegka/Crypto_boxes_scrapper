@@ -16,7 +16,7 @@ unscсsful_atmps = 0
 
 
 @client.on(events.NewMessage(pattern=r"[A-Za-z0-9]{8}"))
-def message_handler(event):
+async def message_handler(event):
     grab_flag = True
     code = event.message.to_dict()["message"]
     global last, unscсsful_atmps
@@ -57,4 +57,7 @@ def message_handler(event):
 
 if __name__ == "__main__":
     client.start()
+    print("клиент запущен")
+    for dialog in client.iter_dialogs():
+        print(dialog.title,": ",dialog.id)
     client.run_until_disconnected()
